@@ -8,6 +8,7 @@ export default function Home() {
   const [seconds, setSeconds] = useState(0);
   const [minutes, setMinutes] = useState(0);
   const [isRunning, setIsRunning] = useState(false);
+  const [message, setMessage] = useState("");
 
   useEffect(() => {
     if (!isRunning) return;
@@ -25,26 +26,35 @@ export default function Home() {
     return () => clearInterval(interval);
   }, [isRunning]);
 
+
   const handleStart = () => setIsRunning(true);
   const handlePause = () => setIsRunning(false);
   const handleReset = () => {
     setIsRunning(false);
-    setSeconds(0);
+    setSeconds(59);
     setMinutes(0);
   };
 
   return (
-    <div>
-      <h1>Pomo Timer</h1>
-      <TimerDisplay minutes={minutes} seconds={seconds} />
-      <Controls
-        isRunning={isRunning}
-        onStart={handleStart}
-        onPause={handlePause}
-        onReset={handleReset}
-        />
+    <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-red-200 to-pink-100 ">
+  <main className="flex flex-col items-center bg-red-300 bg-opacity-80 p-8 rounded-lg shadow-lg">
+      <div className="w-full max-w-3xl">
+          <h1 className="flex flex-col text-center top-4 left-6 text-xl font-bold text-red-500 rounded-md">
+            Pomo Timer 
+          </h1>
+          <div className="rounded-lg p-8 flex flex-col items-center">
+            <TimerDisplay minutes={minutes} seconds={seconds} />
+            <Controls
+              isRunning={isRunning}
+              onStart={handleStart}
+              onPause={handlePause}
+              onReset={handleReset}
+            />
+        </div>
+      </div>
+    </main>
     </div>
+   
   );
-    
 
 }

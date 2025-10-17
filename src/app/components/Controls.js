@@ -2,14 +2,31 @@
 
 export default function Controls({ isRunning, onStart, onPause, onReset }) {
     return (
-        <div>
+        <div className="w-full flex flex-col items-center mt-6">
             {!isRunning && (
-        <button onClick={onStart}>Start</button>
-    )}
+                <button
+                    className="w-48 md:w-64 bg-white text-red-600 hover:text-white font-semibold py-3 rounded shadow-md hover:bg-red-500"
+                    onClick={onStart}
+                >
+                    START
+                </button>
+            )}
+
             {isRunning && (
-        <button onClick={onPause}>Pause</button>
-    )}
-        <button onClick={onReset}>Reset</button>
+                <button
+                    className="w-48 md:w-64 hover:bg-yellow-100 hover:text-red-400 font-semibold py-3 rounded shadow-md"
+                    onClick={onPause}
+                >
+                    PAUSE
+                </button>
+            )}
+
+            <button
+                className="mt-4 text-sm text-white bg-red-500 px-4 py-2 rounded hover:bg-red-600"
+                onClick={onReset}
+            >
+                Reset
+            </button>
         </div>
     );
-}   
+}
