@@ -2,10 +2,10 @@
 
 export default function Controls({ isRunning, onStart, onPause, onReset }) {
     return (
-        <div className="w-full flex flex-col items-center mt-6">
+        <div className="w-full flex flex-col items-center mt-2">
             {!isRunning && (
                 <button
-                    className="w-48 md:w-64 bg-white text-red-600 hover:text-white font-semibold py-3 rounded shadow-md hover:bg-red-500"
+                    className="w-48 md:w-64 bg-white text-red-600 hover:text-white font-semibold py-2 rounded shadow-md hover:bg-red-500"
                     onClick={onStart}
                 >
                     START

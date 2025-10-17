@@ -5,7 +5,7 @@ export default function TimerDisplay({ minutes, seconds }) {
 
     return (
         <div className="border p-6 w-full flex flex-col items-center py-6">
-            <div className="text-7xl md:text-8xl font-extrabold font-mono text-white tracking-tight">
+            <div className="text-8xl md:text-8xl font-extrabold font-mono text-white tracking-tight">
                 {formattedMinutes}:{formattedSeconds}
             </div>
         </div>
