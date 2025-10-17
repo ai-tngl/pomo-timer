@@ -14,7 +14,7 @@ export default function Controls({ isRunning, onStart, onPause, onReset }) {
 
             {isRunning && (
                 <button
-                    className="w-48 md:w-64 hover:bg-yellow-100 hover:text-red-400 font-semibold py-3 rounded shadow-md"
+                    className="w-48 md:w-64 hover:bg-white hover:text-red-400 font-semibold py-3 rounded shadow-md"
                     onClick={onPause}
                 >
                     PAUSE
@@ -22,7 +22,7 @@ export default function Controls({ isRunning, onStart, onPause, onReset }) {
             )}
 
             <button
-                className="mt-4 text-sm text-white bg-red-500 px-4 py-2 rounded hover:bg-red-600"
+                className="mt-4 text-sm font-bold text-white bg-red-500 px-4 py-2 rounded hover:bg-red-600"
                 onClick={onReset}
             >
                 Reset

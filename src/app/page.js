@@ -13,18 +13,25 @@ export default function Home() {
   useEffect(() => {
     if (!isRunning) return;
 
-    const interval = setInterval(() => {
-      setSeconds((s) => {
-        if (s === 0) {
-          setMinutes((m) => (m === 0 ? 0 : m -1));
-          return 59;
-        }
-        return s - 1;
-      });
-    }, 1000);
+  const interval = setInterval(() => {
+    setSeconds((s) => {
+      if (minutes === 0 && s === 0) {
+        clearInterval(interval);
+        setIsRunning(false);
+        setMinutes(0);
+        setSeconds(0);
+        return 0;
+      }
+      if (s === 0) {
+        setMinutes((m) => m - 1);
+        return 59;
+      }
+      return s - 1;
+    });
+  }, 1000);
 
-    return () => clearInterval(interval);
-  }, [isRunning]);
+  return () => clearInterval(interval);
+}, [isRunning, minutes]);
 
 
   const handleStart = () => setIsRunning(true);
