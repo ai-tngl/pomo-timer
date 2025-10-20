@@ -12,32 +12,12 @@ export default function Home() {
   const [inputMinutes,setInputMinutes] = useState(0);
   const [inputSeconds,setInputSeconds] = useState(0);
 
- useEffect(() => {
-    if (!isRunning) return;
-
-    const interval = setInterval(() => {
-      setSeconds((s) => {
-        if (minutes === 0 && s === 0) {
-          clearInterval(interval);
-          setIsRunning(false);
-          return 0;
-        }
-        if (s === 0) {
-          setMinutes((m) => (m > 0 ? m - 1: 0));
-          return 59;
-        }
-        return s - 1;
-      });
-    }, 1000);
-
-    return () => clearInterval(interval);
-  }, [isRunning]);
-
   const handleSetTimer = () => {
     setMinutes(inputMinutes);
     setSeconds(inputSeconds);
     setIsRunning(false);
   }
+
   const handleStart = () =>setIsRunning(true);
   const handlePause = () => setIsRunning(false);
   const handleReset = () => {
@@ -45,6 +25,34 @@ export default function Home() {
     setSeconds(0);
     setMinutes(0);
   };
+
+ useEffect(() => {
+    if (!isRunning) return;
+
+    const interval = setInterval(() => {
+      setSeconds((prevSeconds) => {
+        if (prevSeconds === 0) {
+          return 59; 
+        }
+        return prevSeconds - 1;
+      });
+
+      setMinutes((prevMinutes) => {
+        if (seconds === 0) {
+          if (minutes === 0 && seconds === 0) {
+            setIsRunning(false);
+            clearInterval(interval);
+            return 0;
+          }
+          return Math.max(prevMinutes - 1, 0);
+        }
+        return prevMinutes;
+      });
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, [isRunning, seconds]);
+
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-red-200 to-pink-100">
