@@ -4,7 +4,7 @@ export default function TimerDisplay({ minutes, seconds }) {
     const formattedSeconds = String(seconds).padStart(2, '0');
 
     return (
-        <div className="border p-6 w-full flex flex-col items-center py-6">
+        <div className="border p-8 w-full flex flex-col items-center">
             <div className="text-8xl md:text-8xl font-extrabold font-mono text-white tracking-tight">
                 {formattedMinutes}:{formattedSeconds}
             </div>
